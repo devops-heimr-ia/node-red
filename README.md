@@ -79,6 +79,12 @@ Você pode fazer backup apenas copiando a pasta `data`:
 cp -r data backup-node-red
 ```
 
+
+recriar container:
+```bash
+ docker-compose up --force-recreate
+ ```
+ 
 ---
 
 ## 📌 Requisitos

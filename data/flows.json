@@ -1,0 +1,249 @@
+[
+    {
+        "id": "055f0274ecdb2057",
+        "type": "tab",
+        "label": "Fluxo 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "98eba538c3ba72f0",
+        "type": "telegram bot",
+        "botname": "rconrado_bot",
+        "usernames": "",
+        "chatids": "",
+        "baseapiurl": "",
+        "testenvironment": false,
+        "updatemode": "polling",
+        "pollinterval": "300",
+        "usesocks": false,
+        "sockshost": "",
+        "socksprotocol": "socks5",
+        "socksport": "6667",
+        "socksusername": "anonymous",
+        "sockspassword": "",
+        "bothost": "",
+        "botpath": "",
+        "localbothost": "0.0.0.0",
+        "localbotport": "8443",
+        "publicbotport": "8443",
+        "privatekey": "",
+        "certificate": "",
+        "useselfsignedcertificate": false,
+        "sslterminated": false,
+        "verboselogging": false
+    },
+    {
+        "id": "d2be88ca9d9e2721",
+        "type": "inject",
+        "z": "055f0274ecdb2057",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "2",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 280,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2ffafd045cc4190c",
+        "type": "debug",
+        "z": "055f0274ecdb2057",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 540,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "inject1",
+        "type": "inject",
+        "z": "055f0274ecdb2057",
+        "name": "Verificar site",
+        "props": [],
+        "repeat": "",
+        "crontab": "0 8-17 * * 1,2,3,4,5",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "x": 150,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "switch1",
+        "type": "switch",
+        "z": "055f0274ecdb2057",
+        "name": "Verificar status",
+        "property": "statusCode",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "200",
+                "vt": "str"
+            },
+            {
+                "t": "neq",
+                "v": "200",
+                "vt": "str"
+            }
+        ],
+        "repair": false,
+        "outputs": 2,
+        "x": 600,
+        "y": 380,
+        "wires": [
+            [
+                "fc86d5801068afc0"
+            ],
+            [
+                "636ed80f77ca0764"
+            ]
+        ]
+    },
+    {
+        "id": "38fd2b784d8e566a",
+        "type": "function",
+        "z": "055f0274ecdb2057",
+        "name": "function 91",
+        "func": "msg.payload = {\n  \"chatId\": msg.payload.chatId,\n  \"type\": \"message\",\n  \"content\": \"🚀 Teste de notificação do Node-RED!\"\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "98d8cd67b79bf2f6",
+        "type": "debug",
+        "z": "055f0274ecdb2057",
+        "name": "debug 227",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 300,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "8bdc993f678dea0c",
+        "type": "function",
+        "z": "055f0274ecdb2057",
+        "name": "conf msg",
+        "func": "const chatIdConradoBot = 771379802\n\n\nmsg.payload = {\n  \"chatId\": chatIdConradoBot,\n  \"type\": \"message\",\n  \"content\": `Site ${msg.payload.split(\": \")[2]} off-line`\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 500,
+        "wires": [
+            [
+                "de653ae1a66d7215"
+            ]
+        ]
+    },
+    {
+        "id": "fc86d5801068afc0",
+        "type": "debug",
+        "z": "055f0274ecdb2057",
+        "name": "debug 228",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "636ed80f77ca0764",
+        "type": "debug",
+        "z": "055f0274ecdb2057",
+        "name": "debug 229",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "76d024e98ac02f6f",
+        "type": "telegram receiver",
+        "z": "055f0274ecdb2057",
+        "name": "",
+        "bot": "98eba538c3ba72f0",
+        "saveDataDir": "",
+        "filterCommands": false,
+        "x": 180,
+        "y": 380,
+        "wires": [
+            [
+                "38fd2b784d8e566a",
+                "98d8cd67b79bf2f6"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "de653ae1a66d7215",
+        "type": "telegram sender",
+        "z": "055f0274ecdb2057",
+        "name": "",
+        "bot": "98eba538c3ba72f0",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 1100,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    }
+]

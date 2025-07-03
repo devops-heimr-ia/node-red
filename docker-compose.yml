@@ -11,3 +11,6 @@ services:
       - ./data:/data
     environment:
       - TZ=America/Sao_Paulo
+      - NODE_RED_ADMIN_ROOT=/nodered
+      - NODE_RED_NODE_ROOT=/nodered
+      - NODE_RED_WEBSOCKET_PATH=/nodered/comms
